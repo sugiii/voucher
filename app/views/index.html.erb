@@ -1,0 +1,88 @@
+<p id="notice"><%= notice %></p>
+
+<h1>나이스 전자 상품권 테스트 전문 생성기</h1>
+
+<table>
+<tr>
+  <td>
+    <strong>Comp:</strong>
+  </td>
+  <td>
+    <input type="radio" name="comp" value="HMP" <%= @grp.comp == "HMP" ? @chk : "" %>>홈플러스
+  </td>
+  <td>
+    <input type="radio" name="comp" value="NGC" <%= @grp.comp == "NGC" ? @chk : "" %>>표준형
+  </td>
+  <td>
+    <input type="radio" name="comp" value="SSG" <%= @grp.comp == "SSG" ? @chk : "" %>>신세계
+  </td>
+</tr>
+<tr>
+  <td>
+    <strong>Port:</strong>
+  </td>
+  <td>
+    <input type="radio" name="port" value="TDM" <%= @grp.port == "TDM" ? @chk : "" %>>TDM
+  </td>
+  <td>
+    <input type="radio" name="port" value="POS" <%= @grp.port == "POS" ? @chk : "" %>>POS
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>
+    <strong>Trcode:</strong>
+  </td>
+  <td>
+    <input type='text' value="<%= @grp.trcode %>" id="trcode" size="3">
+  </td>
+  <td>
+    <input type='button' value='load form' id='load'>
+  </td>
+  <td>
+    <input type='button' value='load test data' id='load_test'>
+  </td>
+</tr>
+</table>
+<br>
+<input type='button' id='new' value='new form' />&nbsp
+<input type='button' id='save' value='save form' />&nbsp
+<input type='button' id='test_val' value='new value' />&nbsp
+<input type='button' id='test_save' value='save value' />
+<br>
+<br>
+<table width="100%">
+<tr>
+<td width="50%" valign="top">
+<table id="table-msgform">
+  <thead>
+    <tr>
+      <th widht="5%">Seq</th>
+      <th widht="20%">Name</th>
+      <th widht="30%">Value</th>
+      <th widht="5%">Pos</th>
+      <th widht="5%">Len</th>
+      <th widht="30%">Desc</th>
+      <th widht="5%">Select</th>
+      <th widht="0%">state</th>
+    </tr>
+  </thead>
+</table>
+</td>
+<td width="50%" valign="top">
+<table id="table-history">
+  <thead>
+    <tr>
+      <th widht="5%">Seq</th>
+      <th widht="20%">Name</th>
+      <th widht="45%">Desc</th>
+      <th widht="5%">Rltb</th>
+      <th widht="5%">Rlta</th>
+      <th widht="10%">CrDt</th>
+      <th widht="10%">TryDt</th>
+    </tr>
+  </thead>
+</table>
+</td>
+</tr>
+</table>
