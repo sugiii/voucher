@@ -16,17 +16,6 @@
 
 * Deployment instructions
 
-This is simple project to learn Ruby on rails
+This is simple project to learn Ruby on Rails.
 
 If you have question, send email to nscho66@gmail.com
-
-I am a software engineer living in Seoul, South Korea.
-
-I am a experienced engineer at communication protocol, especially various MAC layer,
-Bluetooth, Zigbee, RF-ID, IEEE 802.11b, Cognitive Radio, etc.
-Also, I have experiences about Linux device drivers, firmware, SIP Internet phone, MS Win32 API programming using MSVC++ and MFC.
-
-Now, I have plan to migrate to Web programmer using RoR, Javascript, React.js.
-I want to get a remote job abroad as a fullstack web programmer.
-
-My english nick name is Joe, and my email is nscho66@gmail.com.
