@@ -11,15 +11,56 @@ class MsgformsController < ApplicationController
     @msgform = Msgform.new
   end
 
-  # POST /msgforms
-  def save
+  def send_msg
+    msgs = params[:msg]
+    comps = params[:comp]
+
+    msgSender = MsgSender.new
+    rlt = msgSender.sendMsg(comps, msgs)
+    res = { data: rlt }
+
+    render json: res
+  end
+
+  def save_test
     msgs = params[:msg]
     comps = params[:comp]
     tc = params[:tc]
 
+    grp = Grp.find_or_create_by(comp: comps[0], port: comps[1], trcode: comps[2])
+    testcase = Testcase.new
+    testcase.grp_id = grp.id
+    testcase.name =  tc[0]
+    testcase.desc = tc[1]
+    testcase.exprlt =  tc[2]
+    testcase.save
+
     i = 0
     while(1==1)
-      m = msgs[i.to_s]
+      m = msgs[i]
+      if (m == nil)
+        break
+      end
+      i = i + 1
+      msg = Msgdatum.new
+      msgformId = grp.findMsg( comps, m )
+      msg.msgform_id = msgformId
+      msg.testcase_id = testcase.id
+      msg.seq = m[0]
+      msg.value = m[2]
+      msg.save
+    end
+    render json: msgs
+  end
+
+  # POST /msgforms
+  def save
+    msgs = params[:msg]
+    comps = params[:comp]
+
+    i = 0
+    while(1==1)
+      m = msgs[i]
       if (m == nil)
         break
       end
@@ -30,18 +71,6 @@ class MsgformsController < ApplicationController
         grp = Grp.new
         msgId = grp.findMsg( comps, m )
         msgform = Msgform.find_by('id' => msgId)
-      elsif m[7] == '3'
-        grp = Grp.find_or_create_by(comp: comps[0], port: comps[1], trcode: comps[2])
-        testcase = Testcase.find_or_create_by(grp_id: grp.id, name: tc[0], desc: tc[1], exprlt: tc[2])
-        msg = Msgdatum.new
-        msgformId = grp.findMsg( comps, m )
-        msg.msgform_id = msgformId
-        msg.testcase_id = testcase.id
-        msg.seq = m[0]
-        msg.value = m[2]
-        msg.save
-        render json: msgs
-        return
       end
       grp = Grp.find_or_create_by(comp: comps[0], port: comps[1], trcode: comps[2])
       msgform.seq = m[0]

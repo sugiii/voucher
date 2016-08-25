@@ -90,7 +90,7 @@ function bindEvent() {
         comp.push($('#trcode').val());
 
         var nRow = $(this).parents('tr')[0];
-        var aData = oTable.fnGetData(nRow);
+        var aData = oTableH.fnGetData(nRow);
 
         $.ajax({
             url: "msgforms/load_testdata",
@@ -393,6 +393,66 @@ $(document).ready(function() {
             type: "POST",
             data: {
                 'msg': res,
+                'comp': comp,
+                'tc': tc
+            },
+            dataType: "json"
+        })
+    });
+
+    $('#save_test').click(function(e) {
+        e.preventDefault();
+
+        if (!checkInput())
+            return;
+
+        var comp = new Array(0);
+        comp.push($(':radio[name="comp"]:checked').val());
+        comp.push($(':radio[name="port"]:checked').val());
+        comp.push($('#trcode').val());
+
+        var tc = new Array(0);
+        tc.push($('#tc_name').val());
+        tc.push($('#tc_desc').val());
+        tc.push($('#tc_rltb').val());
+
+        var mods = ot.rows().data().toArray();
+
+        request = $.ajax({
+            url: "msgforms/save_test",
+            type: "POST",
+            data: {
+                'msg': mods,
+                'comp': comp,
+                'tc': tc
+            },
+            dataType: "json"
+        })
+    });
+
+    $('#send_msg').click(function(e) {
+        e.preventDefault();
+
+        if (!checkInput())
+            return;
+
+        var comp = new Array(0);
+        comp.push($(':radio[name="comp"]:checked').val());
+        comp.push($(':radio[name="port"]:checked').val());
+        comp.push($('#trcode').val());
+
+        var tc = new Array(0);
+        tc.push($('#tc_name').val());
+        tc.push($('#tc_desc').val());
+        tc.push($('#tc_rltb').val());
+
+        var mods = ot.rows().data().toArray();
+
+        request = $.ajax({
+            url: "msgforms/send_msg",
+            type: "POST",
+            data: {
+                'msg': mods,
                 'comp': comp,
                 'tc': tc
             },

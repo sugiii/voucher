@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root 'msgforms#index'
 
   post '/msgforms/save' => 'msgforms#save', :as => :msgforms_save
+  post '/msgforms/save_test' => 'msgforms#save_test', :as => :msgforms_save_test
+  post '/msgforms/send_msg' => 'msgforms#send_msg', :as => :msgforms_send_msg
   post '/msgforms/delete' => 'msgforms#delete', :as => :msgforms_delete
   post '/msgforms/load' => 'msgforms#load', :as => :msgforms_load
   post '/msgforms/dataload' => 'msgforms#dataload', :as => :msgforms_dataload
