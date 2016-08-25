@@ -1,4 +1,5 @@
 class MsgType1 < MsgBase
-    def doSend(tc)
+    def prepareMsg(tc)
+
     end
 end

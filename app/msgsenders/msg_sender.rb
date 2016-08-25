@@ -6,7 +6,7 @@ class MsgSender
         tc.trcode = comps[2]
 
         asmbler = AsmMsg.new
-        tc.msg = asmbler.asmMsg(msgs)
+        tc.sendMsg = asmbler.asmMsg(msgs)
 
         dispatch = Dispatcher.new
         dispatch.doSend(tc)
