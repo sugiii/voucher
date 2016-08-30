@@ -7,7 +7,8 @@ class MsgSender
 
         asmbler = AsmMsg.new
         tc.sendMsg = asmbler.asmMsg(msgs)
-
+        tc.recvMsg = 'init'
+        tc.rltCd = '0000'
         dispatch = Dispatcher.new
         dispatch.doSend(tc)
     end

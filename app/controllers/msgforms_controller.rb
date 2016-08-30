@@ -11,15 +11,18 @@ class MsgformsController < ApplicationController
     @msgform = Msgform.new
   end
 
+  def self.setTestResult(res)
+    @testResult = res
+  end
+
   def send_msg
     msgs = params[:msg]
     comps = params[:comp]
 
     msgSender = MsgSender.new
-    rlt = msgSender.sendMsg(comps, msgs)
-    res = { data: rlt }
+    msgSender.sendMsg(comps, msgs)
 
-    render json: res
+    render json: { data: @testResult }
   end
 
   def save_test

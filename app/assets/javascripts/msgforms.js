@@ -90,7 +90,7 @@ function bindEvent() {
         comp.push($('#trcode').val());
 
         var nRow = $(this).parents('tr')[0];
-        var aData = oTableH.fnGetData(nRow);
+        aData = oTableH.fnGetData(nRow);
 
         $.ajax({
             url: "msgforms/load_testdata",
@@ -257,10 +257,6 @@ function msgFormLoad() {
     ot.ajax.reload(function() { bindEvent(); });
 }
 
-function dataFormLoad() {
-    otH.ajax.reload(function() { bindEvent(); });
-}
-
 function compData() {
     var comp = new Array(0);
     comp.push($(':radio[name="comp"]:checked').val());
@@ -269,41 +265,6 @@ function compData() {
     return { 'comp': comp };
 }
 
-function setHistory() {
-    otH = $('#table-history').DataTable({
-        "columnDefs": [{
-            "targets": 0,
-            "width": "35%"
-        }, {
-            "targets": 1,
-            "width": "45%"
-        }, {
-            "targets": 2,
-            "width": "5%"
-        }, {
-            "targets": 3,
-            "width": "5%"
-        }, {
-            "targets": 4,
-            "width": "10%"
-        }, {
-            "targets": 5,
-            "visible": false
-        }],
-        "ajax": {
-            "url": 'msgforms/histload',
-            "type": 'POST',
-            "data": function(d) {
-                return compData();
-            }
-        },
-        "iDisplayLength": 50,
-        'sDom': 't'
-    })
-
-    oTableH = $('#table-history').dataTable();
-
-}
 $(document).ready(function() {
     ot = $('#table-msgform').DataTable({
         "columnDefs": [{
@@ -345,6 +306,7 @@ $(document).ready(function() {
     oTable = $('#table-msgform').dataTable();
 
     setHistory();
+    setResult();
 
     nEditing = null;
     //<input type="checkbox" name="select" value="">
